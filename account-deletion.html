@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Deletion - Gustus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+        .effective-date {
+            color: #6b7280;
+            font-size: 0.9em;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+        h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #374151;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .warning-box {
+            background-color: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .warning-box strong {
+            color: #92400e;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9em;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.75em;
+            }
+            h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Account Deletion</h1>
+        <p class="effective-date">Effective Date: [EFFECTIVE_DATE]</p>
+    </header>
+
+    <section>
+        <p>
+            You can delete your Gustus account at any time. This page explains how to delete your account 
+            and what happens to your data when you do.
+        </p>
+    </section>
+
+    <section>
+        <h2>How to Delete Your Account</h2>
+        
+        <h3>Method 1: In the App (Recommended)</h3>
+        <ol>
+            <li>Open the Gustus app</li>
+            <li>Navigate to <strong>Settings → Account → Delete account</strong></li>
+            <li>Follow the on-screen instructions to confirm deletion</li>
+            <li>Type "DELETE" when prompted to confirm</li>
+        </ol>
+
+        <h3>Method 2: By Email</h3>
+        <p>
+            If you cannot access the app, you can request account deletion by email:
+        </p>
+        <ol>
+            <li>Send an email to <a href="mailto:[SUPPORT_EMAIL]">[SUPPORT_EMAIL]</a></li>
+            <li>Use the email address associated with your Gustus account</li>
+            <li>Include "Account Deletion Request" in the subject line</li>
+            <li>Specify that you want to permanently delete your account</li>
+        </ol>
+        <p>
+            We will process your request within a reasonable timeframe (typically within 30 days) and 
+            confirm deletion once completed.
+        </p>
+    </section>
+
+    <section>
+        <h2>What Will Be Deleted</h2>
+        <p>When you delete your account, the following data will be permanently removed:</p>
+        <ul>
+            <li><strong>Account information</strong>:
+                <ul>
+                    <li>Email address</li>
+                    <li>Display name</li>
+                    <li>Avatar URL</li>
+                    <li>User ID and authentication identifiers</li>
+                </ul>
+            </li>
+            <li><strong>All user-generated content</strong>:
+                <ul>
+                    <li>All coffee brew logs and recipes</li>
+                    <li>All ratings, notes, and sensory evaluations</li>
+                    <li>All taste tags and feeling tags</li>
+                    <li>All brew method details and recipe parameters</li>
+                    <li>All visibility settings</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="warning-box">
+            <p><strong>Warning: Deletion is permanent and cannot be undone.</strong></p>
+            <p>Once your account is deleted, all your data will be permanently removed and cannot be recovered. Please ensure you have exported any data you wish to keep before proceeding.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>What May Remain Temporarily</h2>
+        <p>
+            After account deletion, the following may remain for a limited period due to technical 
+            requirements:
+        </p>
+        <ul>
+            <li><strong>Backups</strong>: Database backups may contain your data until backup retention 
+                expires. We do not maintain backups of deleted data long-term.</li>
+            <li><strong>Security logs</strong>: Operational logs that reference your account ID (but not 
+                personal content like notes or ratings) may be retained according to standard log retention 
+                policies for security and debugging purposes.</li>
+            <li><strong>Supabase Auth records</strong>: In rare cases where Supabase Auth deletion fails, 
+                your authentication record may remain in Supabase's systems, but you will not be able to 
+                access the app as your application data will be deleted.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Deletion Process</h2>
+        <p>
+            Account deletion is performed immediately upon confirmation. The deletion process:
+        </p>
+        <ul>
+            <li>Removes your user profile from the database</li>
+            <li>Cascades to delete all associated coffee logs and related data</li>
+            <li>Attempts to delete your authentication record from Supabase</li>
+            <li>Occurs within a single database transaction to ensure data consistency</li>
+        </ul>
+        <p>
+            You will be signed out of the app immediately after deletion. If you try to sign in again 
+            with the same Google account, you will need to create a new account.
+        </p>
+    </section>
+
+    <section>
+        <h2>Questions</h2>
+        <p>
+            If you have questions about account deletion or need assistance, please contact us at 
+            <a href="mailto:[SUPPORT_EMAIL]">[SUPPORT_EMAIL]</a>.
+        </p>
+        <p>
+            For more information about how we handle your data, please see our 
+            <a href="privacy.html">Privacy Policy</a>.
+        </p>
+    </section>
+
+    <footer>
+        <p><strong>Contact</strong></p>
+        <p>For account deletion requests or questions, please contact us at <a href="mailto:[SUPPORT_EMAIL]">[SUPPORT_EMAIL]</a>.</p>
+        <p style="margin-top: 20px;">Last updated: [EFFECTIVE_DATE]</p>
+    </footer>
+</body>
+</html>
